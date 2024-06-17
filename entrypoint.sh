@@ -100,6 +100,12 @@ fi
 cp /tmp/meterian-cli-www.jar /tmp/packaged-meterian-cli.jar
 chown meterian:meterian /tmp/packaged-meterian-cli.jar
 
+# flutter/dart specific prep
+if [[ -d "/home/meterian/bin/flutter" ]];then
+    chown meterian:meterian /home/meterian 2>/dev/null || true
+    chown -R meterian:meterian /home/meterian/bin/flutter/ 2>/dev/null || true 
+fi
+
 set +e
 # launch meterian client with the newly created user
 if [[ "$METERIAN_CLI_ARGS" =~ --debug ]]; then
